@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState, Suspense } from 'react';
+import React from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { Post } from '@/types/post';
 import { exportPosts } from '@/lib/exportPosts';
@@ -15,12 +16,33 @@ import Image from 'next/image';
 // genuine line-break spacing and inline formatting instead of approximating it with <p> tags.
 function MessageContent({ text }: { text: string }) {
   if (!text) return null;
+  // Split the HTML string at the <br> boundaries, preserving the <br> tags in the array.
+  // This allows us to wrap each text segment in a <div> with correct dir attribute
+  // while keeping the exact number of line breaks.
+  const segments = text.split(/(<br\s*\/?>)/gi);
+
   return (
-    <div
-      className="tgme_widget_message_text text-foreground leading-relaxed break-words"
-      dir="auto"
-      dangerouslySetInnerHTML={{ __html: text }}
-    />
+    <div className="message-content-container">
+      {segments.map((segment, idx) => {
+        // If it's a <br> tag, render it as a <span> to avoid React.Fragment error
+        if (segment.toLowerCase().startsWith('<br')) {
+          return <span key={idx} dangerouslySetInnerHTML={{ __html: segment }} />;
+        }
+        // If it's an empty string (from consecutive <br>s), render nothing
+        if (segment.trim() === '') {
+          return <React.Fragment key={idx} />;
+        }
+        // Otherwise, wrap the segment in a <div> with the correct direction
+        return (
+          <div
+            key={idx}
+            dir={isRTL(segment) ? 'rtl' : 'ltr'}
+            className="break-words"
+            dangerouslySetInnerHTML={{ __html: segment }}
+          />
+        );
+      })}
+    </div>
   );
 }
 
