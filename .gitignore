@@ -1,3 +1,6 @@
 venv_tel_export/
 __pycache__/
 .kilo/
+node_modules
+.claude/
+.next/
