@@ -46,6 +46,20 @@ function MessageContent({ text }: { text: string }) {
   );
 }
 
+// Media display component for messages with photos/videos
+function MessageMedia({ media_url, media_type }: { media_url: string; media_type: string }) {
+  if (!media_type) return null;
+
+  // Render a simple placeholder rectangle indicating the presence of media.
+  // This avoids loading external media while still preserving layout space.
+  const label = media_type.charAt(0).toUpperCase() + media_type.slice(1);
+  return (
+    <div className="media-placeholder">
+      {label} media (not displayed)
+    </div>
+  );
+}
+
 export default function ChannelPage() {
   return (
     <Suspense fallback={<div className="flex items-center justify-center min-h-screen"><Loader2 className="animate-spin text-primary" size={48} /></div>}>
@@ -290,16 +304,8 @@ function ChannelContent() {
                       {/* Main Content Area */}
                       <div className="space-y-3">
                         {/* Media Display */}
-                        {p.media_url && p.media_type === 'photo' && (
-                          <div className="relative w-full aspect-video rounded-lg overflow-hidden border border-border">
-                            <Image
-                              src={p.media_url}
-                              alt="Post media"
-                              fill
-                              className="object-contain bg-black/5"
-                              unoptimized
-                            />
-                          </div>
+                        {p.media_type && (
+                          <MessageMedia media_url={p.media_url} media_type={p.media_type} />
                         )}
 
                         <div className="text-foreground leading-relaxed break-words">

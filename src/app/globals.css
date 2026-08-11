@@ -52,6 +52,39 @@
   --color-input: var(--color-input);
   --color-destructive: var(--color-destructive);
   --color-destructive-foreground: var(--color-destructive-foreground);
+  --color-info: #0ea5e9;
+}
+
+/* Custom CSS for Telegram emojis to prevent stacking and ensure proper rendering */
+tg-emoji, .emoji {
+  display: inline-block;
+  vertical-align: middle;
+  width: 1.2em;
+  height: 1.2em;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+}
+
+/* Hide fallback native emoji text inside the emoji element completely */
+.emoji b, .emoji span, tg-emoji b, tg-emoji span {
+  display: none !important;
+}
+
+/* Placeholder style for media sections */
+.media-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 2px dashed var(--color-border);
+  background: var(--color-muted);
+  color: var(--color-muted-foreground);
+  font-size: 0.9rem;
+  text-align: center;
+  border-radius: 0.5rem;
 }
 
 /* Base styles */
