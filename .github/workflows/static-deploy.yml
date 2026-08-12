@@ -15,24 +15,19 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
+          cache: npm
           cache-dependency-path: web/package-lock.json
 
       - name: Install dependencies
-        run: pnpm install
+        run: npm ci
         working-directory: web
 
       - name: Build Next.js static export
-        run: pnpm run build
+        run: npm run build
         working-directory: web
 
       - name: Ensure .nojekyll is present
