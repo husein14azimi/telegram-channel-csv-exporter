@@ -47,7 +47,7 @@ function MessageContent({ text }: { text: string }) {
 }
 
 // Media display component for messages with photos/videos
-function MessageMedia({ media_url, media_type }: { media_url: string; media_type: string }) {
+function MessageMedia({ media_url, media_type }: { media_url?: string; media_type: string }) {
   if (!media_type) return null;
 
   // Render a simple placeholder rectangle indicating the presence of media.
