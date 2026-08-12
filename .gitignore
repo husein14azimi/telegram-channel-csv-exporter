@@ -1,6 +1,16 @@
 venv_tel_export/
 __pycache__/
 .kilo/
-node_modules
 .claude/
+
+AGENTS.md
+AI-SIGHT.md
+BUILD-PLAN.md
+
+# Node / Next.js artefacts inside the web UI
+web/node_modules/
+web/.next/
+web/out/
+
 .next/
+node_modules/
