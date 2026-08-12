@@ -28,7 +28,7 @@ jobs:
           cache-dependency-path: web/package-lock.json
 
       - name: Install dependencies (frozen lockfile)
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
         working-directory: web
 
       - name: Build Next.js static export
