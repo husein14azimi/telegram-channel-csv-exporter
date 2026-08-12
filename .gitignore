@@ -3,10 +3,6 @@ __pycache__/
 .kilo/
 .claude/
 
-AGENTS.md
-AI-SIGHT.md
-BUILD-PLAN.md
-
 # Node / Next.js artefacts inside the web UI
 web/node_modules/
 web/.next/
