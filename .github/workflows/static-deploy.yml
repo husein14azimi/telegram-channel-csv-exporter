@@ -27,7 +27,7 @@ jobs:
           cache: pnpm
           cache-dependency-path: web/package-lock.json
 
-      - name: Install dependencies (frozen lockfile)
+      - name: Install dependencies
         run: pnpm install
         working-directory: web
 
