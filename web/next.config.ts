@@ -1,11 +1,13 @@
 import type { NextConfig } from 'next';
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 const nextConfig: NextConfig = {
   // Enable static export for GitHub Pages
   output: 'export',
 
-  // Optional: Configure base path if needed for GitHub Pages
-  // basePath: '/telegram-channel-csv-exporter',
+  // Configure base path for GitHub Pages
+  basePath: basePath,
 
   // Images configuration for static export
   images: {
